@@ -16,6 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:authorities="com.mango.providers.articles"
+            android:name="ArticlesProvider"
+            android:label="@string/provider_name"
+            android:process="articlesprovider"
+            android:multiprocess="false">
+        </provider>
     </application>
 
 </manifest>

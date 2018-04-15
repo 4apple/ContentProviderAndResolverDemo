@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ContentProviderAndResolverDemo</string>
+    <string name="provider_name">Articles</string>
 </resources>
