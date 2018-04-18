@@ -3,26 +3,42 @@
     package="com.mango.contentproviderandresolverdemo">
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+<!--                <action android:name="android.intent.action.VIEW" />-->
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://mango.com/contentproviderandresolverdemo” -->
+                <data android:scheme="http"
+                    android:host="mango.com"
+                    android:pathPrefix="/contentproviderandresolverdemo" />
+                <!-- note that the leading "/" is required for pathPrefix-->
+                <!-- Accepts URIs that begin with "example://mango”
+                <data android:scheme="example"
+                      android:host="mango" />
+                -->
+            </intent-filter>
         </activity>
         <provider
             android:authorities="com.mango.providers.articles"
-            android:name="ArticlesProvider"
+            android:name=".ArticlesProvider"
             android:label="@string/provider_name"
-            android:process="articlesprovider"
+            android:process=".articlesprovider"
             android:multiprocess="false">
         </provider>
+
     </application>
 
 </manifest>

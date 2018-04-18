@@ -7,9 +7,10 @@ import android.net.Uri;
  * package com.mango.contentproviderandresolverdemo
  *
  * @author swd1
- * @date 18-4-10
+ * Date 18-4-10
  */
 public class Articles {
+
     /**
      * Data Field
      */
@@ -41,4 +42,6 @@ public class Articles {
     /**Content URI*/
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/item");
     public static final Uri CONTENT_POS_URI = Uri.parse("content://" + AUTHORITY + "/pos");
+
+
 }

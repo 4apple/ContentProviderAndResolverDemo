@@ -1,4 +1,4 @@
-package com.example.contentresolverdemo;
+package com.mango.contentproviderandresolverdemo;
 
 import android.net.Uri;
 
@@ -7,11 +7,16 @@ import android.net.Uri;
  * package com.mango.contentproviderandresolverdemo
  *
  * @author swd1
- * @date 18-4-10
+ * Date 18-4-10
  */
 public class Article {
 
-
+    Article(int id, String title, String abs, String url) {
+        this.id = id;
+        this.title = title;
+        this.abs = abs;
+        this.url = url;
+    }
     /**
      * data field
      */
