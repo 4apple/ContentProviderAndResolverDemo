@@ -94,7 +94,7 @@ public class ArticlesAdapter {
     }
 
 
-    public int getItemCount() {
+    public int getArticleCount() {
         int count  = 0;
         ContentProviderClient provider = null;
         try {
