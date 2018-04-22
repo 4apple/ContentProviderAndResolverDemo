@@ -37,11 +37,11 @@ public class ArticlesProvider extends ContentProvider {
     private static final String DB_TABLE = "ArticlesTable";
     private static final int DB_VERSION = 1;
 
-    private static final String DB_CREATE = "CREATE TABLE " + DB_NAME +
-            " (" + Articles.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            Articles.TITLE + " TEXT NOT NULL, " +
-            Articles.ABSTRACT + " TEXT NOT NULL, " +
-            Articles.URL + " TEXT NOT NULL);";
+    private static final String DB_CREATE = "create table " + DB_TABLE +
+            " (" + Articles.ID + " integer primary key autoincrement, " +
+            Articles.TITLE + " text not null, " +
+            Articles.ABSTRACT + " text not null, " +
+            Articles.URL + " text not null);";
 
     private static final UriMatcher uriMatcher;
     private static final HashMap<String, String> articleProjectionMap;

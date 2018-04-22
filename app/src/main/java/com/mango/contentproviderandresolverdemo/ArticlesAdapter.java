@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.util.Log;
 
 import java.util.LinkedList;
 
@@ -28,6 +29,7 @@ public class ArticlesAdapter {
 
     public ArticlesAdapter(Context context) {
         resolver = context.getContentResolver();
+        Log.i(TAG, "ArticlesAdapter created");
     }
 
     public long insertArticle(Article article) {
