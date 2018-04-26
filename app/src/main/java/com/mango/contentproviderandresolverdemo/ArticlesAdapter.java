@@ -133,7 +133,7 @@ public class ArticlesAdapter {
         return new Article(id,title,abs,url);
     }
 
-    public Article getArticlesByPos(int pos) {
+    public Article getArticleByPos(int pos) {
         Uri uri = ContentUris.withAppendedId(Articles.CONTENT_POS_URI, pos);
 
         Cursor cursor = resolver.query(uri, projection, null,

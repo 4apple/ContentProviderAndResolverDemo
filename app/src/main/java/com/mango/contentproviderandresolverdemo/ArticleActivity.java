@@ -37,7 +37,7 @@ public class ArticleActivity extends Activity implements View.OnClickListener {
         abstractEdit = findViewById(R.id.edit_article_abstract);
         urlEdit = findViewById(R.id.edit_article_url);
 
-        addButton = findViewById(R.id.button_add);
+        addButton = findViewById(R.id.button_add_article);
         addButton.setOnClickListener(this);
 
         modifyButton = findViewById(R.id.button_modify);

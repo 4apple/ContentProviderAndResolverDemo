@@ -100,7 +100,7 @@ public class ArticlesProvider extends ContentProvider {
                 String pos = uri.getPathSegments().get(1);
                 sqlBuilder.setTables(DB_TABLE);
                 sqlBuilder.setProjectionMap(articleProjectionMap);
-                limit = ", 1";
+                limit = pos + ", 1";
                 break;
             }
             default:{

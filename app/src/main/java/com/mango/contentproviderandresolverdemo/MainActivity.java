@@ -41,6 +41,9 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
         articleList.setAdapter(adapter);
         articleList.setOnItemClickListener(this);
 
+        observer = new ArticleObserver(new Handler());
+        getContentResolver().registerContentObserver(Articles.CONTENT_URI,true,observer);
+
         addButton = findViewById(R.id.button_add);
         addButton.setOnClickListener(this);
         Log.i(TAG, "Main activity created");
@@ -65,6 +68,25 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
         }
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case ADD_ARTICAL_ACTIVITY: {
+                if (Activity.RESULT_OK == resultCode) {
+                    String title = data.getStringExtra(Articles.TITLE);
+                    String abs = data.getStringExtra(Articles.ABSTRACT);
+                    String url = data.getStringExtra(Articles.URL);
+
+                    Article article = new Article(-1, title,abs,url);
+                    aa.insertArticle(article);
+                }
+            }
+        }
+    }
+
     private class ArticleObserver extends ContentObserver {
 
         /**
@@ -78,7 +100,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
 
         @Override
         public void onChange(boolean selfChange) {
-            adapter.notifyAll();
+            adapter.notifyDataSetChanged();
         }
     }
 
@@ -96,12 +118,12 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
 
         @Override
         public Object getItem(int position) {
-            return aa.getArticlesByPos(position);
+            return aa.getArticleByPos(position);
         }
 
         @Override
         public long getItemId(int position) {
-            Article a = aa.getArticlesByPos(position);
+            Article a = aa.getArticleByPos(position);
             if (a == null) {
                 return -1;
             } else {
@@ -117,14 +139,16 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
                 convertView = inflater.inflate(R.layout.item, null);
             }
 
-            TextView titleView = (TextView) convertView.findViewById(R.id.textview_article_title);
-            titleView.setText("Title: " + article.getTitle());
+            if (article != null) {
+                TextView titleView = (TextView) convertView.findViewById(R.id.textview_article_title);
+                titleView.setText("Title: " + article.getTitle());
 
-            TextView  abstractView = (TextView) convertView.findViewById(R.id.textview_article_abstract);
-            abstractView.setText("Abstract: " + article.getAbstract());
+                TextView  abstractView = (TextView) convertView.findViewById(R.id.textview_article_abstract);
+                abstractView.setText("Abstract: " + article.getAbstract());
 
-            TextView urlView = (TextView)convertView.findViewById(R.id.textview_article_url);
-            urlView.setText("Url: " + article.getUrl());
+                TextView urlView = (TextView)convertView.findViewById(R.id.textview_article_url);
+                urlView.setText("Url: " + article.getUrl());
+            }
 
             return convertView;
         }
